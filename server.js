@@ -3,28 +3,23 @@ const app = express();
 const PORT = 3000; 
  
 const LOGIN = 'ladyxxa';   
- 
-// Маршрут /DDMMYY 
+
 app.get('/:datecode', (req, res) => { 
   const datecode = req.params.datecode; 
    
-  // Получаем текущую дату в формате DDMMYY (без разделителей) 
   const now = new Date(); 
   const day = String(now.getDate()).padStart(2, '0'); 
   const month = String(now.getMonth() + 1).padStart(2, '0'); 
   const year = String(now.getFullYear()).slice(-2); // последние 2 цифры года 
   const todayCode = `${day}${month}${year}`; 
    
-  // Проверяем, совпадает ли маршрут с сегодняшним DDMMYY 
   if (datecode !== todayCode) { 
     return res.status(404).send('Not Found'); 
   } 
    
-  // Формируем дату в формате DD-MM-YYYY 
   const fullYear = now.getFullYear(); 
   const formattedDate = `${day}-${month}-${fullYear}`; 
    
-  // Ответ в JSON 
   res.setHeader('Content-Type', 'application/json'); 
   res.json({ 
     date: formattedDate, 
@@ -32,16 +27,14 @@ app.get('/:datecode', (req, res) => {
   }); 
 }); 
  
-// Маршрут /api/rv/abc  
 app.get('/api/rv/:str', (req, res) => { 
   const str = req.params.str; 
    
-  // Только строчные латинские буквы, длина >= 1 
 const regex = /^[a-z]+$/; 
 if (!regex.test(str)) { 
 return res.status(400).send('Bad Request: only lowercase latin letters allowed'); 
 } 
-// Переворачиваем и возвращаем строку 
+
 const reversed = str.split('').reverse().join(''); 
 res.send(reversed);  
 }); 
