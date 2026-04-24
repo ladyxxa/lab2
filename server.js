@@ -2,7 +2,7 @@ const express = require('express');
 const app = express(); 
 const PORT = 3000; 
  
-const LOGIN = 'lisakorolkova';   
+const LOGIN = 'ladyxxa';   
  
 // Маршрут /DDMMYY 
 app.get('/:datecode', (req, res) => { 
