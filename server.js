@@ -42,7 +42,7 @@ if (!regex.test(str)) {
 return res.status(400).send('Bad Request: only lowercase latin letters allowed'); 
 } 
 // Переворачиваем и возвращаем строку 
-const reversed = str.split(').reverse().join('); 
+const reversed = str.split('').reverse().join(''); 
 res.send(reversed);  
 }); 
 // Запуск сервера 
